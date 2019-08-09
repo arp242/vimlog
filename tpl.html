@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>VimLog – a ChangeLog for Vim</title>
+	<link rel="canonical" href="https://arp242.net/vimlog">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700&amp;subset=latin-ext">
+	<link rel="icon" type="image/png" href="/favicon.png">
+	<link rel="stylesheet" href="all.css">
+	<style>
+		html       { font: 16px/140% Lato, sans-serif; }
+		header     { text-align: center; width: 100%; background-color: #ebe7c3; padding-bottom: 1em; }
+		h1         { margin-bottom: .2em; }
+		h2         { background-color: #ebe7c3; width: 100%; text-align: center; padding: .5em 0; margin-top: .5em; border-bottom: 0; }
+		h1, h2, h3 { font-variant-ligatures: no-discretionary-ligatures; font-feature-settings: 'dlig' off; }
+		p          { margin: 0; }
+		body > p   { text-align: center; padding-bottom: 1em; }
+		.ta-center { text-align: center; }
+
+		section             { background-color: #fff; margin-bottom: 1em; box-shadow: 0 0 6px rgba(0,0,0,.2); }
+		section div         { display: flex; justify-content: space-between; padding: .2em .5em; }
+		h3                  { font-size: 1rem; margin: 0; }
+		section div p       { margin: 0; }
+		section > p         { padding: .2em .5em; padding-left: 2em; }
+        .help-option        { color: seagreen;  /* Type, 2 */ }
+        .help-key           { color: slateblue; /* Special, 5 */ }
+        .help-tag           { color: darkcyan;  /* Identifier, 6 */ }
+		table               { border-collapse: collapse; display: flex; justify-content: space-between; }
+		tbody               { padding: 0 10px; /* IE11 fix: */ float: left; }
+		tbody tr:last-child { border-bottom: none; }
+		td, th              { padding: .2em .5em; }
+		th                  { text-align: left; }
+	</style>
+</head>
+
+<body>
+	<header class="center">
+		<h1>VimLog</h1>
+		<strong>A ChangeLog for Vim</strong>
+	</header>
+	<p class="center">
+		By <a href="https://arp242.net" target="_blank">Martin Tournoij</a>
+		|
+		<a href="https://github.com/arp242/vimlog" target="_blank">Source</a>
+		|
+		<a href="https://www.patreon.com/arp242">Support my work</a>
+	</p>
+	<p class="center">This doesn't list all changes, just the most useful and notable ones.<br>
+		Changes from Vim 8.0 (September 2016) up to 8.1.1890 (Aug 19) are listed.</p>
+
+	<div class="center ta-center"><strong>Compatability table</strong></div>
+	<table class="center">
+		<tbody>
+			<tr title="disco"><th>Ubuntu 19.04</th><td>Vim 8.1.0320</td><td>Neovim 0.3.4</td></tr>
+			<tr title="cosmic"><th>Ubuntu 18.10</th><td>Vim 8.0.1766</td><td>Neovim 0.3.1</td></tr>
+			<tr title="bionic"><th>Ubuntu 18.04 LTS</th><td>Vim 8.0.1453</td><td>Neovim 0.2.2</td></tr>
+		</tbody>
+		<tbody>
+			<tr title="xenial"><th>Ubuntu 16.04 LTS</th><td>Vim 7.4.1689</td><td>(no package)</td></tr>
+			<tr title="stretch"><th>Debian 9</th><td>Vim 8.0.0197</td><td>Neovim 0.1.7</td></tr>
+			<tr title="buster"><th>Debian 10</th><td>Vim 8.1.0875</td><td>Neovim 0.3.4</td></tr>
+		</tbody>
+	</table>
+	<div class="center ta-center"><small>Debian and Ubuntu are the most common distros with old Vim versions.</small></div>
+
+	<main class="center">%%CONTENT%%</main>
+</body>
+</html>
