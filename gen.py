@@ -184,7 +184,7 @@ au FileType git
         '''Filter quickfix/location list'''],
 
     ["'vartabstop', 'varsofttabstop'", ['8.1.0105'],
-        '''TODO'''],
+        '''Allows to specify different widths for what a tabstop counts for in a file (see 'vartabstop').'''],
 
     ["promp buffer", ['8.1.0027', '8.1.0035'],
         '''Mainly useful to feed user input to a job.'''],
