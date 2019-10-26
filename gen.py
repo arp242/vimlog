@@ -5,6 +5,9 @@
 changes = [
     # 2019
 
+    ["border and align in 'completepopup'", ['8.1.1902', '8.1.1904'],
+        '''More option to control completion popup menu.'''],
+
     ["popup in 'completeopt'", ['8.1.1880', '8.1.1882'],
         '''Show extra completion info in popup window (as an alternative to the
         preview window).'''],
@@ -12,12 +15,12 @@ changes = [
     [":spellrare", ['8.1.1838'],
         '''Mark words as rare in the spellfile.'''],
 
-    ["-&gt; operator", ['8.1.1835', '8.1.1834', '8.1.1809', '8.1.1803', '8.1.1888'],
+    ["-&gt; operator", ['8.1.1835', '8.1.1834', '8.1.1809', '8.1.1803', '8.1.1996'],
         '''<code>expr-&gt;fun(args)</code> is a shortcut for <code>fun(expr,
         args)</code> to improve readability:<br><code>[1, 2]-&gt;map({_, v -&gt;
         v + 1})</code>. See |method|.'''],
 
-    ["Popup windows", ['8.1.1799', '8.1.1391', '8.1.1364'],
+    ["Popup windows", ['8.1.1799', '8.1.1391', '8.1.1364', '8.1.1905', '8.1.1928'],
         '''Popup windows are like the completion window, but can be controlled
         in VimScript to a much greater degree. See |popup|, 'previewpopup'.
         This is still an experimental feature.'''],
