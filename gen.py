@@ -5,6 +5,16 @@
 changes = [
     # 2019
 
+    ["v:argv", ['8.1.2233'],
+        '''Get commandline arguments Vim was invoked with.'''],
+
+    ["Add gM", ['8.1.2231'],
+        '''Move to middle of line.'''],
+
+    ["hl-LineNrAbove, hl-LineNrBelow", ['8.1.2229'],
+        '''Highlight line numbers above and below the cursor when
+        'relativenumber' is set.'''],
+
     ["border and align in 'completepopup'", ['8.1.1902', '8.1.1904'],
         '''More option to control completion popup menu.'''],
 
@@ -161,7 +171,7 @@ changes = [
         never required any more.
     '''],
 
-    [":filter support for more commands", ['8.0.1651', '8.1.0165', '8.1.0495'],
+    [":filter support for more commands", ['8.0.1651', '8.1.0165', '8.1.0495', '8.1.2221'],
         ''' '''],
 
     [":tlmenu", ['8.1.0487'],
@@ -302,6 +312,11 @@ if commits.returncode > 0:
 commits = [l.split('|') for l in commits.stdout.decode().split('\n')[:-1]]
 commits.reverse()
 
+def find_commit(version):
+    for c in commits:
+        if c[0] == 'v' + version:
+            return c
+
 html = '<h2>2019</h2>\n'
 last_year = '2019'
 for c in changes:
@@ -310,10 +325,7 @@ for c in changes:
     version = []
     c[1] = sorted(c[1])
     for i, p in enumerate(c[1]):
-        for co in commits:
-            if co[0] == 'v' + p:
-                commit = co
-                break
+        commit = find_commit(p)
 
         # ['v8.1.1833', '0c779e8e4831c538918ae835ce3365af028e36ea', 'Fri Aug 9 17:01:02 2019 +0200']^J
         if i == len(c[1]) - 1:
@@ -332,5 +344,11 @@ for c in changes:
     #last_version = version.pop()
     html += f'''<section><div><h3>{helpify(c[0])}</h3><p>{', '.join(version)}</p></div><p>{helpify(c[2])}</p></section>\n'''
 
+lu = commits[0]
+lud = commits[0][2].split(' ')
+last_update = f'{lu[0][1:]} ({lud[1]} {lud[2]} {lud[4]})'
+
 with open('index.html', 'w') as fp:
-    fp.write(open('tpl.html').read().replace('%%CONTENT%%', html))
+    fp.write(open('tpl.html').read().
+            replace('%%CONTENT%%', html).
+            replace('%%LAST_UPDATE%%', last_update))
