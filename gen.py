@@ -1,9 +1,15 @@
 #!/usr/bin/env python
 #
 
+# Location of Vim source, git checkout
+vimsrc = '/data/src/vim'
+
 # [title, [vim version(s)], extended description]
 changes = [
     # 2019
+
+    [":term ++shell", ['8.1.2251', '8.1.2255'],
+        '''Run :term commands in the shell.'''],
 
     ["v:argv", ['8.1.2233'],
         '''Get commandline arguments Vim was invoked with.'''],
@@ -272,7 +278,7 @@ import re
 
 # Load helptags.
 tags = {}
-for line in open('/home/martin/src/vim/runtime/doc/tags').readlines():
+for line in open(vimsrc + '/runtime/doc/tags').readlines():
     tag, file, _ = line.split('\t')
     tag = tag.replace('&lt;', '<').replace('&gt;', '>')
     tags[tag] = file
@@ -302,9 +308,10 @@ def helpify(text):
     return text
 
 # Load all commits.
-commits = subprocess.run(['git', '-C', '/home/martin/src/vim', 'tag', '--list',
+commits = subprocess.run(['git', '-C', vimsrc, 'tag', '--list',
                       '--format', '%(refname:strip=2)|%(objectname)|%(authordate)'],
-                      capture_output=True)
+                      stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                      # Py 3.7 capture_output=True)
 if commits.returncode > 0:
     print(commits.stderr.decode())
     sys.exit(commits.returncode)
