@@ -8,6 +8,9 @@ vimsrc = '/data/src/vim'
 changes = [
     # 2019
 
+    ["strptime()", ['8.1.2326'],
+        '''Parse a time string'''],
+
     [":term ++shell", ['8.1.2251', '8.1.2255'],
         '''Run :term commands in the shell.'''],
 
