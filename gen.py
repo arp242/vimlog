@@ -8,6 +8,12 @@ vimsrc = '/data/src/vim'
 changes = [
     # 2019
 
+    ["rand() and srand()", ['8.1.2342', '8.1.2343'],
+        '''Generate random numbers.'''],
+
+    ["interupt()", ['8.1.2341'],
+        '''Abort a running script.'''],
+
     ["strptime()", ['8.1.2326'],
         '''Parse a time string'''],
 
@@ -180,7 +186,7 @@ changes = [
         never required any more.
     '''],
 
-    [":filter support for more commands", ['8.0.1651', '8.1.0165', '8.1.0495', '8.1.2221'],
+    [":filter support for more commands", ['8.0.1651', '8.1.0165', '8.1.0495'],
         ''' '''],
 
     [":tlmenu", ['8.1.0487'],
