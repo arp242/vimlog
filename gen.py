@@ -2,23 +2,140 @@
 #
 
 # Location of Vim source, git checkout
-vimsrc = '/data/src/vim'
+vimsrc = '/home/martin/src/vim'
 
 # [title, [vim version(s)], extended description]
 changes = [
-    # 2019
 
+    ["lead: in 'listchars'", ['8.2.2454'],
+        '''Highlight leading spaces when 'list' is set.'''],
+
+    ["Detect focus events in terminal", ['8.2.2345', '8.2.2348', '8.2.2352', '8.2.2383', '8.2.2428'],
+        '''The |FocusGained| and |FocusLost| autocmds can work inside a
+            terminal if the terminal supports it. See |xterm-focus-event|.'''],
+
+    [":sleep!", ['8.2.2366'],
+        '''Sleep and hide cursor.'''],
+
+    ["Add charcol(), getcharpos(), setcharpos(), getcursorcharpos(), setcursorcharpos()", '8.2.2324',
+        '''Multibyte-aware versions of col(), getpos(), setpos(), getcurpos(), cursor().'''],
+
+    # 2020
+    
+    ['Add charidx()', '8.2.2233',
+        '''Convert byte index to character index.'''],
+
+    ["Add |VimSuspend| and |VimResume|", '8.2.2128',
+        '''Triggered on suspend/resume; only for &lt;C-z&gt; and not SIGSTP/SIGCONT signals.'''],
+
+    ['Add &lt;Cmd&gt;', '8.2.1978',
+        '''Don't change modes in this key mapping so that insert or visual mode
+        mappings will always work without having to use &lt;C-u&gt; or &lt;C-o&gt;.
+        For example <code>noremap &lt;C-q&gt; &lt;Cmd&gt;:normal! K&lt;CR&gt;</code>'''],
+
+    [':sort and sort() can do locale-aware sorting', ['8.2.1933'],
+        '''<code>:sort l</code> or <code>sort(..., 'l')</code>.'''],
+
+    ["matchfuzzy(), matchfuzzypos()", ['8.2.1665', '8.2.1726', '8.2.1893', '8.2.1921'],
+        '''"Fuzzy" matching.'''],
+
+    ["Add |InsertLeavePre|", '8.2.1874',
+        '''Triggered before leaving insert mode.'''],
+
+    ["|??| operator", ['8.2.1794'],
+        '''<code>0 ?? 'hello'</code> as a shortcut for <code>0 ? 'helllo' : ''</code>.'''],
+
+    ["Add gettext()", ['8.2.1544'],
+        '''Can be used to translate plugins.'''],
+
+    ["Add setcellwidths(), charclass()", ['8.2.1535', '8.2.1536'],
+        '''Allow overriding the display width for characters whose width is ambiguous.'''],
+
+    ["Add g&lt;Tab&gt;; support :tabnext #, :tabclose #, etc.", ['8.2.1401', '8.2.1413'],
+        '''g&lt;Tab&gt; goes back to the last accessed tab, and <code>#</code> in
+        <code>:tab*</code> commands refer to the last accessed tab.'''],
+
+    ["expand('&lt;SID&gt;')", ['8.2.1347'],
+        '''Useful for the *func and *expr settings, e.g.
+        <code>let &includexpr = expand('&lt;SID&gt;') .. 'fun()'</code> to use <code>s:fun()</code>'''],
+
+    ["Add 'quickfixtextfunc'", ['8.2.0869', '8.2.0933', '8.2.0959', '8.2.1255'],
+        '''Customize text contents of quickfix window; can also be passed as an argument to to setqflist()'''],
+
+    ["Add sorting to readir(), readirex()", ['8.2.0988'],
+        '''Add optional argument to readdir() and readdirex() to control sorting (no sorting, ASCII, LC_COLLATE).'''],
+
+    ['Add terminalprops()', ['8.2.0970'],
+        '''List which features are supported in this terminal.'''],
+
+    ["Add 'spelloptions'", ['8.2.0953'],
+        '''Only accepted value is <code>camel</code> to spell check CamelCase words.'''],
+
+    ["Add |SigUSR1| autocmd", ['8.2.0952'],
+        '''Event to detect SIG_USR1.'''],
+
+    ["Add flatten()", ['8.2.0935'],
+        '''Flatten a list'''],
+
+    ["Add getreginfo()", '8.2.0924',
+        '''Returns detailed information for a register information; can be restored by passing to setreg().'''],
+
+    ["Add searchcount()", '8.2.0877',
+        '''Get details about current search.'''],
+
+    ["Allow setting underline colour in terminal", ['8.2.0863'],
+        '''Can use <code>ctermul</code> in :highlight to set the underline colour, or
+        <code>guisp</code> if 'termguicolors' is enabled. Your terminal needs to
+        support this.''' ],
+
+    ["Add reduce()", ['8.2.0878'],
+        '''Reduce list to single value.'''],
+
+    ["Add readirex()", ['8.2.0875'],
+        '''Like readdir(), but return a dict with attributes (i.e. stat() on Unix.'''],
+
+    ["Add getmarklist()", '8.2.0861',
+        '''Get list of marks, similar to :marks'''],
+
+    ["Add unsigned ot 'nrformats'", ['8.2.0860'],
+        '''Ignore <code>-</code> before numbers and always treat them as unsigned
+        for &lt;C-a&gt; and &lt;C-x&gt; so that using it on e.g. <code>1985-06-18</code> works as expected.'''],
+
+    ["Add mapset()", ['8.2.0807', '8.2.0812', '8.2.0815'],
+        '''Set mappings from a script, and can restore mappings.from maparg().'''],
+
+    ["Call Vim functions from Lua", ['8.2.0775'],
+        '''Call Vim functions from Lua with <code>vim.call('fun_name', 'arg')</code> and <code>vim.fun_name('arg')</code>.'''],
+
+    # ["Add "nostop" to 'backspace'", ['8.2.0590'],
+    # 	'''
+    # 		aa0489e12 #5940
+    # https://groups.google.com/g/vim_use/c/tGICgxJmdf8
+    # 		TODO: I can't figure this out, as ^W and ^U don't behave as documented
+    # 		and identical to nostop(?)
+    # 	'''],
+
+    ["IPv6 support in channels", ['8.2.0557', '8.2.0574'],
+        '''IPv6 support in channels'''],
+
+    ["Add echoraw()", ['8.2.0258'],
+        '''Output string to terminal with no processing; can be used to send escape codes.'''],
+
+    ["Add optional error code to :cquit", ['8.2.0095'],
+        '''Exit with a specific code, instead of always 1. |v:exiting| was added in 8.2.2070 (Nov 2020)'''],
+
+    # 2019
     ["rand() and srand()", ['8.1.2342', '8.1.2343'],
         '''Generate random numbers.'''],
 
-    ["interupt()", ['8.1.2341'],
+    ["interrupt()", ['8.1.2341'],
         '''Abort a running script.'''],
 
     ["strptime()", ['8.1.2326'],
         '''Parse a time string'''],
 
-    [":term ++shell", ['8.1.2251', '8.1.2255'],
-        '''Run :term commands in the shell.'''],
+    [":terminal ++shell", ['8.1.2251', '8.1.2255'],
+        '''Run :terminal commands in the shell.'''],
 
     ["v:argv", ['8.1.2233'],
         '''Get commandline arguments Vim was invoked with.'''],
@@ -26,9 +143,12 @@ changes = [
     ["Add gM", ['8.1.2231'],
         '''Move to middle of line.'''],
 
-    ["hl-LineNrAbove, hl-LineNrBelow", ['8.1.2229'],
+    ["|hl-LineNrAbove|, |hl-LineNrBelow|", ['8.1.2229'],
         '''Highlight line numbers above and below the cursor when
         'relativenumber' is set.'''],
+
+    ["Add 'cursorlineopt'", ['8.1.2019'],
+        '''More control on how to display 'cursorline'.'''],
 
     ["border and align in 'completepopup'", ['8.1.1902', '8.1.1904'],
         '''More option to control completion popup menu.'''],
@@ -215,7 +335,10 @@ au FileType git
         '''Variable tabstop widths, e.g. <code>set vartabstop=4,8</code> makes
             the first tab 4 spaces, and the rest 8.'''],
 
-    ["promp buffer", ['8.1.0027', '8.1.0035'],
+    ["|OptionSet| autocmd", ['8.1.0081', '8.1.0414'],
+        '''Triggered whenever an option is set.'''],
+
+    ["prompt buffer", ['8.1.0027', '8.1.0035'],
         '''Mainly useful to feed user input to a job.'''],
 
     ["Allow :unlet $ENV", ['8.0.1832'],
@@ -296,7 +419,7 @@ help_url = '<a target="_blank" class="help-{}" href="https://vimhelp.org/{}.html
 def opt(klass):
     def f(m):
         tag = m.group(0)
-        file = tags.get(tag, None)
+        file = tags.get(tag.strip(), None)
         if file is None:
             return tag
         return help_url.format(klass, file, tag, tag)
@@ -313,7 +436,7 @@ def helpify(text):
     text = re.sub(r"('\w+')", opt('option'), text)             # 'option'
     text = re.sub(r'\b(\w+)\(\)', opt('tag'), text)            # function()
     text = re.sub(r':([\w]+)[^|]', opt('tag'), text)           # :ex
-    text = re.sub(r'\|([-\w/:\\<>%=\[\]]+)\|', helptag, text)  # |tag|
+    text = re.sub(r'\|([-\w/?:\\<>%=\[\]]+)\|', helptag, text)  # |tag|
     return text
 
 # Load all commits.
@@ -333,8 +456,11 @@ def find_commit(version):
         if c[0] == 'v' + version:
             return c
 
-html = '<h2>2019</h2>\n'
-last_year = '2019'
+def in_neovim(patch):
+    return True
+
+html = '<h2>2021</h2>\n'
+last_year = '2021'
 for c in changes:
     if type(c[1]) == str:
         c[1] = [c[1]]
