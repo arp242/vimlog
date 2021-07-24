@@ -9,12 +9,12 @@ vimsrc = '/data/src/vim'
 #     ''' '''],
 
 changes = [
-    ["Add setdigraph(), setdigraphlist(), getdigraph(), getdigraphlist()", ['8.2.2518'],
-        '''List and define digraphs from functions.'''],
-
     ["Add list to 'breakindentopt'", ['8.2.3160', '8.2.3198'],
         '''Add additional indent for lines that match a numbered or bulleted
             list (using the 'formatlistpat' setting).'''],
+
+    ["Add setdigraph(), setdigraphlist(), getdigraph(), getdigraphlist()", ['8.2.3184'],
+        '''List and define digraphs from functions.'''],
 
     ["Add \%.l, \%<.l, \%>.l patterns", '8.2.3110',
         '''Match the line the cursor is currently on; see |/\%l|.'''],
