@@ -1,11 +1,62 @@
-#!/usr/bin/env python
-#
+#!/usr/bin/env python3
 
 # Location of Vim source, git checkout
-vimsrc = '/home/martin/src/vim'
+vimsrc = '/data/src/vim'
 
 # [title, [vim version(s)], extended description]
+#
+# ["", '',
+#     ''' '''],
+
 changes = [
+    ["Add setdigraph(), setdigraphlist(), getdigraph(), getdigraphlist()", ['8.2.2518'],
+        '''List and define digraphs from functions.'''],
+
+    ["Add list to 'breakindentopt'", ['8.2.3160', '8.2.3198'],
+        '''Add additional indent for lines that match a numbered or bulleted
+            list (using the 'formatlistpat' setting).'''],
+
+    ["Add \%.l, \%<.l, \%>.l patterns", '8.2.3110',
+        '''Match the line the cursor is currently on; see |/\%l|.'''],
+
+    ["Add 'cryptmethod'=xchaha20", ['8.2.3022'],
+        '''More secure encryption from libsodium.'''],
+
+    ["Add |zp|, |zP|, |zy|", ['8.2.2914', '8.2.2971'],
+        '''|zp| pastes in block mode without adding trailing whitespace, |zy| yanks
+            without trailing whitespace.'''],
+
+    ["Add %{ to 'statusline'", '8.2.2854',
+        '''%{expr} reëvaluates the expression as a 'statusline' formatting string.'''],
+
+    ["Add f flag in :vimgrep", '8.2.2813',
+        '''"Fuzzy" match :vimgrep results.'''],
+
+    ["Add 'autoshelldir'", '8.2.2675',
+        '''Automatically change directory in Vim from terminal window.'''],
+
+    ["Add strcharlen()", '8.2.2606',
+        '''Get length of string counting combining characters separately.'''],
+
+    ["Loop over a string", '8.2.2658',
+        '''Loop over a string as `for char in "str"`; loops are by codepoint
+        with any combining characters.'''],
+
+    ["Expand 'fillchars'", ['8.2.2508', '8.2.2518', '8.2.2542', '8.2.2518', '8.2.2569'],
+        '''New values: "eob" to change change the (~) to indicate non-existing
+            lines, "foldopen", "foldclose", and "foldsep" to change 'foldcolumn'
+            markers.
+
+            'fillchars' can be set per-window (previously it was always global).
+
+            Also allow multibyte characters in 'fillchars' and 'statusline'.
+        '''],
+
+    ["Add followwrap to 'diffopt'", ['8.2.2490'],
+        '''Don't reset 'wrap' for diff windows.'''],
+
+    ["Add fullcommand()", ['8.2.2468'],
+        '''Get the full command name from abbreviated ones (e.g. :s → :substitute)'''],
 
     ["lead: in 'listchars'", ['8.2.2454'],
         '''Highlight leading spaces when 'list' is set.'''],
@@ -21,7 +72,7 @@ changes = [
         '''Multibyte-aware versions of col(), getpos(), setpos(), getcurpos(), cursor().'''],
 
     # 2020
-    
+
     ['Add charidx()', '8.2.2233',
         '''Convert byte index to character index.'''],
 
@@ -92,7 +143,7 @@ changes = [
         '''Reduce list to single value.'''],
 
     ["Add readirex()", ['8.2.0875'],
-        '''Like readdir(), but return a dict with attributes (i.e. stat() on Unix.'''],
+        '''Like readdir(), but return a dict with attributes (i.e. stat() on Unix).'''],
 
     ["Add getmarklist()", '8.2.0861',
         '''Get list of marks, similar to :marks'''],
@@ -400,13 +451,10 @@ au FileType git
     ["'pyxversion', :pythonx", ['8.0.0251'],
         '''Make it easier to run Python code in both Python 2 and 3, depending
         on what is available.'''],
-
 ]
 
 
-import subprocess
-import sys
-import re
+import re, subprocess, sys, urllib.parse
 
 # Load helptags.
 tags = {}
@@ -422,7 +470,7 @@ def opt(klass):
         file = tags.get(tag.strip(), None)
         if file is None:
             return tag
-        return help_url.format(klass, file, tag, tag)
+        return help_url.format(klass, file, urllib.parse.quote_plus(tag), tag)
     return f
 
 def helptag(m):
@@ -430,20 +478,19 @@ def helptag(m):
     file = tags.get(tag, None)
     if file is None:
         return m.group(0)
-    return help_url.format('tag', file, tag, tag)
+    return help_url.format('tag', file, urllib.parse.quote_plus(tag), tag)
 
 def helpify(text):
-    text = re.sub(r"('\w+')", opt('option'), text)             # 'option'
-    text = re.sub(r'\b(\w+)\(\)', opt('tag'), text)            # function()
-    text = re.sub(r':([\w]+)[^|]', opt('tag'), text)           # :ex
-    text = re.sub(r'\|([-\w/?:\\<>%=\[\]]+)\|', helptag, text)  # |tag|
+    text = re.sub(r"('\w+')", opt('option'), text)              # 'option'
+    text = re.sub(r'\b(\w+)\(\)', opt('tag'), text)             # function()
+    text = re.sub(r':([\w]+)[^|]', opt('tag'), text)            # :ex
+    text = re.sub(r'\|([-\w/?:\\<>%=\[\].]+)\|', helptag, text)  # |tag|
     return text
 
 # Load all commits.
 commits = subprocess.run(['git', '-C', vimsrc, 'tag', '--list',
-                      '--format', '%(refname:strip=2)|%(objectname)|%(authordate)'],
-                      stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-                      # Py 3.7 capture_output=True)
+                         '--format', '%(refname:strip=2)|%(objectname)|%(authordate)'],
+                         capture_output=True)
 if commits.returncode > 0:
     print(commits.stderr.decode())
     sys.exit(commits.returncode)
@@ -455,6 +502,8 @@ def find_commit(version):
     for c in commits:
         if c[0] == 'v' + version:
             return c
+    print(f'no commit found for "{version}"', file=sys.stderr)
+    sys.exit(1)
 
 def in_neovim(patch):
     return True
@@ -469,7 +518,7 @@ for c in changes:
     for i, p in enumerate(c[1]):
         commit = find_commit(p)
 
-        # ['v8.1.1833', '0c779e8e4831c538918ae835ce3365af028e36ea', 'Fri Aug 9 17:01:02 2019 +0200']^J
+        # ['v8.1.1833', '0c779e8e4831c538918ae835ce3365af028e36ea', 'Fri Aug 9 17:01:02 2019 +0200']
         if i == len(c[1]) - 1:
             year = commit[2][-10:-6]
             if year != last_year:
@@ -489,6 +538,9 @@ for c in changes:
 lu = commits[0]
 lud = commits[0][2].split(' ')
 last_update = f'{lu[0][1:]} ({lud[1]} {lud[2]} {lud[4]})'
+
+with open('last_update', 'w') as fp:
+    fp.write(f'v{last_update.split(" ")[0]}\n')
 
 with open('index.html', 'w') as fp:
     fp.write(open('tpl.html').read().
