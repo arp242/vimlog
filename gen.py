@@ -94,7 +94,7 @@ changes = [
         '''Triggered before leaving insert mode.'''],
 
     ["|??| operator", ['8.2.1794'],
-        '''<code>0 ?? 'hello'</code> as a shortcut for <code>0 ? 'helllo' : ''</code>.'''],
+        '''<code>echo value ?? 'used if value is empty'</code>'''],
 
     ["Add gettext()", ['8.2.1544'],
         '''Can be used to translate plugins.'''],
