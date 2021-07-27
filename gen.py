@@ -9,14 +9,14 @@ vimsrc = '/data/src/vim'
 #     ''' '''],
 
 changes = [
+    ["Add digraph_get(), digraph_getlist(), digraph_set(), digraph_setlist()", ['8.2.3184', '8.2.3226'],
+        '''List and define digraphs from functions.'''],
+
     ["Add list to 'breakindentopt'", ['8.2.3160', '8.2.3198'],
         '''Add additional indent for lines that match a numbered or bulleted
             list (using the 'formatlistpat' setting).'''],
 
-    ["Add setdigraph(), setdigraphlist(), getdigraph(), getdigraphlist()", ['8.2.3184'],
-        '''List and define digraphs from functions.'''],
-
-    ["Add \%.l, \%<.l, \%>.l patterns", '8.2.3110',
+    ["Add <code>\%.l</code>, <code>\%<.l</code>, and <code>\%>.l</code> patterns", '8.2.3110',
         '''Match the line the cursor is currently on; see |/\%l|.'''],
 
     ["Add 'cryptmethod'=xchaha20", ['8.2.3022'],
@@ -62,8 +62,7 @@ changes = [
         '''Highlight leading spaces when 'list' is set.'''],
 
     ["Detect focus events in terminal", ['8.2.2345', '8.2.2348', '8.2.2352', '8.2.2383', '8.2.2428'],
-        '''The |FocusGained| and |FocusLost| autocmds can work inside a
-            terminal if the terminal supports it. See |xterm-focus-event|.'''],
+        '''The |FocusGained| and |FocusLost| autocmds can work inside a terminal. See |xterm-focus-event|.'''],
 
     [":sleep!", ['8.2.2366'],
         '''Sleep and hide cursor.'''],
@@ -114,7 +113,7 @@ changes = [
         '''Customize text contents of quickfix window; can also be passed as an argument to to setqflist()'''],
 
     ["Add sorting to readir(), readirex()", ['8.2.0988'],
-        '''Add optional argument to readdir() and readdirex() to control sorting (no sorting, ASCII, LC_COLLATE).'''],
+        '''Add optional argument to readdir() and readdirex() to control sorting.'''],
 
     ['Add terminalprops()', ['8.2.0970'],
         '''List which features are supported in this terminal.'''],
@@ -135,9 +134,8 @@ changes = [
         '''Get details about current search.'''],
 
     ["Allow setting underline colour in terminal", ['8.2.0863'],
-        '''Can use <code>ctermul</code> in :highlight to set the underline colour, or
-        <code>guisp</code> if 'termguicolors' is enabled. Your terminal needs to
-        support this.''' ],
+        '''Can use <code>ctermul</code> in :highlight to set the underline
+        colour, or <code>guisp</code> if 'termguicolors' is enabled.''' ],
 
     ["Add reduce()", ['8.2.0878'],
         '''Reduce list to single value.'''],
@@ -148,15 +146,15 @@ changes = [
     ["Add getmarklist()", '8.2.0861',
         '''Get list of marks, similar to :marks'''],
 
-    ["Add unsigned ot 'nrformats'", ['8.2.0860'],
+    ["Add unsigned to 'nrformats'", ['8.2.0860'],
         '''Ignore <code>-</code> before numbers and always treat them as unsigned
         for &lt;C-a&gt; and &lt;C-x&gt; so that using it on e.g. <code>1985-06-18</code> works as expected.'''],
 
     ["Add mapset()", ['8.2.0807', '8.2.0812', '8.2.0815'],
-        '''Set mappings from a script, and can restore mappings.from maparg().'''],
+        '''Set mappings from a script, and can restore mappings.'''],
 
     ["Call Vim functions from Lua", ['8.2.0775'],
-        '''Call Vim functions from Lua with <code>vim.call('fun_name', 'arg')</code> and <code>vim.fun_name('arg')</code>.'''],
+        '''Call Vim functions from Lua with <code>vim.call('fun_name', 'arg')</code> and <code>vim.fn.fun_name('arg')</code>.'''],
 
     # ["Add "nostop" to 'backspace'", ['8.2.0590'],
     # 	'''
@@ -191,7 +189,7 @@ changes = [
     ["v:argv", ['8.1.2233'],
         '''Get commandline arguments Vim was invoked with.'''],
 
-    ["Add gM", ['8.1.2231'],
+    ["Add |gM|", ['8.1.2231'],
         '''Move to middle of line.'''],
 
     ["|hl-LineNrAbove|, |hl-LineNrBelow|", ['8.1.2229'],
