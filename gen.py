@@ -9,6 +9,12 @@ vimsrc = '/data/src/vim'
 #     ''' '''],
 
 changes = [
+    ["|ModeChanged| event", ['8.2.3430'],
+        '''Triggered when the mode changes.'''],
+
+    ["Add multispace to 'listchars'", ['8.2.3424'],
+        '''Show two or more spaces no matter where they appear.'''],
+
     ["Add digraph_get(), digraph_getlist(), digraph_set(), digraph_setlist()", ['8.2.3184', '8.2.3226'],
         '''List and define digraphs from functions.'''],
 
