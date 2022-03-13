@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import html
 import re
 import subprocess
 import sys
@@ -70,41 +71,72 @@ def in_neovim(patch):
     return True
 
 
-html = '<h2>2021</h2>\n'
-last_year = '2021'
-for c in changes:
-    if type(c[1]) == str:
-        c[1] = [c[1]]
-    version = []
-    c[1] = sorted(c[1])
-    for i, p in enumerate(c[1]):
-        commit = find_commit(p)
+def gen_html():
+    html = '<h2>2021</h2>\n'
+    last_year = '2021'
+    for c in changes:
+        if type(c[1]) == str:
+            c[1] = [c[1]]
+        version = []
+        c[1] = sorted(c[1])
+        for i, p in enumerate(c[1]):
+            commit = find_commit(p)
 
-        # ['v8.1.1833', '0c779e8e4831c538918ae835ce3365af028e36ea', 'Fri Aug 9 17:01:02 2019 +0200']
-        if i == len(c[1]) - 1:
-            year = commit[2][-10:-6]
-            if year != last_year:
-                html += f'\n<h2>{year}</h2>\n'
-                last_year = year
+            # ['v8.1.1833', '0c779e8e4831c538918ae835ce3365af028e36ea', 'Fri Aug 9 17:01:02 2019 +0200']
+            if i == len(c[1]) - 1:
+                year = commit[2][-10:-6]
+                if year != last_year:
+                    html += f'\n<h2>{year}</h2>\n'
+                    last_year = year
 
-        d = commit[2][4:10].strip()
-        l = f'https://github.com/vim/vim/commit/{commit[1]}'
-        # Only put the date on the last one.
-        if i == len(c[1]) - 1:
-            version.append(f'<a target="_blank" href="{l}">{p}</a> <sup>({d})</sup>')
-        else:
-            version.append(f'<a target="_blank" href="{l}">{p}</a>')
-    #last_version = version.pop()
-    html += f'''<section><div><h3>{helpify(c[0])}</h3><p>{', '.join(version)}</p></div><p>{helpify(c[2])}</p></section>\n'''
+            d = commit[2][4:10].strip()
+            l = f'https://github.com/vim/vim/commit/{commit[1]}'
+            # Only put the date on the last one.
+            if i == len(c[1]) - 1:
+                version.append(f'<a target="_blank" href="{l}">{p}</a> <sup>({d})</sup>')
+            else:
+                version.append(f'<a target="_blank" href="{l}">{p}</a>')
+        #last_version = version.pop()
+        html += f'''<section><div><h3>{helpify(c[0])}</h3><p>{', '.join(version)}</p></div><p>{helpify(c[2])}</p></section>\n'''
 
-lu = commits[0]
-lud = commits[0][2].split(' ')
-last_update = f'{lu[0][1:]} ({lud[1]} {lud[2]} {lud[4]})'
+    lu = commits[0]
+    lud = commits[0][2].split(' ')
+    last_update = f'{lu[0][1:]} ({lud[1]} {lud[2]} {lud[4]})'
 
-with open('last_update', 'w') as fp:
-    fp.write(f'v{last_update.split(" ")[0]}\n')
+    with open('last_update', 'w') as fp:
+        fp.write(f'v{last_update.split(" ")[0]}\n')
 
-with open('index.html', 'w') as fp:
-    fp.write(open('tpl.html').read().
-             replace('%%CONTENT%%', html).
-             replace('%%LAST_UPDATE%%', last_update))
+    with open('index.html', 'w') as fp:
+        fp.write(open('tpl.html').read().
+                 replace('%%CONTENT%%', html).
+                 replace('%%LAST_UPDATE%%', last_update))
+
+
+def gen_rss():
+    xml = ''
+
+    escape = lambda t: html.escape(t.replace('<code>', '').replace('</code>', ''))
+
+    for c in changes:
+        if type(c[1]) == str:
+            c[1] = [c[1]]
+        c[1] = sorted(c[1])
+
+        title = '[{}] '.format(', '.join(c[1])) + escape(c[0])
+        link = "https://www.arp242.net/vimlog"
+        desc = escape(c[2])
+        xml += f'''<item><title>{title}</title><link>{link}</link><description>{desc}</description></item>\n'''
+
+    with open('feed.xml', 'w') as fp:
+        fp.write(open('tpl.xml').read().replace('%%CONTENT%%', xml))
+
+
+def main():
+    gen_html()
+    gen_rss()
+
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())
