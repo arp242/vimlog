@@ -30,13 +30,10 @@
 		tbody tr:last-child { border-bottom: none; }
 		td, th              { padding: .2em .5em; }
 		th                  { text-align: left; }
-
-    #rss { position: absolute; top: 5px; right: 5px }
 	</style>
 </head>
 
 <body>
-  <a id="rss" href="feed.xml"><img alt="RSS" src="pic_rss.gif" width="36" height="14"></a>
 	<header class="center">
 		<h1>VimLog</h1>
 		<strong>A ChangeLog for Vim</strong>
@@ -47,8 +44,9 @@
 		<a href="https://github.com/arp242/vimlog" target="_blank">Source</a>
 	</p>
 	<p class="center">
-		Get notified of updates by watching
-		<a href="https://github.com/arp242/vimlog">the GitHub project</a> or
+		Get notified of updates by subscribing to the <a href="feed.xml">RSS feed</a>,
+		watching
+		<a href="https://github.com/arp242/vimlog">the GitHub project</a>, or
 		subscribing to the <a href="https://github.com/arp242/vimlog/commits/master.atom">commit feed</a>.
 	</p>
 
@@ -225,9 +223,9 @@ END</pre></p></section>
 <section><div><h3> "\ </h3><p><a target="_blank" href="https://github.com/vim/vim/commit/67f8ab829911c7901c534ef2bf19cc34b622936f">8.1.0369</a> <sup>(Sep 11)</sup></p></div><p>Comments in line continuations; see <a target="_blank" class="help-tag" href="https://vimhelp.org/repeat.txt.html#line-continuation-comment">line-continuation-comment</a>: <pre>
 au FileType git
             "\ Go to commit.
-            \  nnoremap &lt;Leader&gt;g <a target="_blank" class="help-tag" href="https://vimhelp.org/eval.txt.html#%3Aexe+">:exe </a>printf(":!cd ~/src/vim && git diff %s^\!", split(getline('.'), ' ')[1])&lt;CR&gt;
+            \  nnoremap &lt;Leader&gt;g <a target="_blank" class="help-tag" href="https://vimhelp.org/eval.txt.html#%3Aexe+">:exe </a>printf(":!cd ~/src/vim && git diff %s^\!", split(getline("."), ' ')[1])&lt;CR&gt;
             "\ Delete commit.
-            \| nnoremap &lt;Leader&gt;d <a target="_blank" class="help-tag" href="https://vimhelp.org/eval.txt.html#%3Acall+">:call </a>search('^commit ', 'bc') \| <a target="_blank" class="help-tag" href="https://vimhelp.org/eval.txt.html#%3Aexe+">:exe </a>'d' . (search('^commit ', 'n') - line('.'))&lt;CR&gt;
+            \| nnoremap &lt;Leader&gt;d <a target="_blank" class="help-tag" href="https://vimhelp.org/eval.txt.html#%3Acall+">:call </a>search('^commit ', 'bc') \| <a target="_blank" class="help-tag" href="https://vimhelp.org/eval.txt.html#%3Aexe+">:exe </a>'d' . (search('^commit ', 'n') - line("."))&lt;CR&gt;
 </pre>
             </p></section>
 <section><div><h3><a target="_blank" class="help-tag" href="https://vimhelp.org/quickfix.txt.html#cfilter-plugin">cfilter-plugin</a></h3><p><a target="_blank" href="https://github.com/vim/vim/commit/8c5e0093c9badced73e382915fb024a5c3ea463b">8.1.0311</a> <sup>(Aug 21)</sup></p></div><p>Filter quickfix/location list</p></section>

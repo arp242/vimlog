@@ -113,16 +113,15 @@ def gen_html():
 
 
 def gen_rss():
-    xml = ''
-
     escape = lambda t: html.escape(t.replace('<code>', '').replace('</code>', ''))
 
+    xml = ''
     for c in changes:
         if type(c[1]) == str:
             c[1] = [c[1]]
         c[1] = sorted(c[1])
 
-        title = '[{}] '.format(', '.join(c[1])) + escape(c[0])
+        title = '{} [{}]'.format(escape(c[0]), ', '.join(c[1]))
         link = "https://www.arp242.net/vimlog"
         desc = escape(c[2])
         xml += f'''<item><title>{title}</title><link>{link}</link><description>{desc}</description></item>\n'''
@@ -130,13 +129,6 @@ def gen_rss():
     with open('feed.xml', 'w') as fp:
         fp.write(open('tpl.xml').read().replace('%%CONTENT%%', xml))
 
-
-def main():
+if __name__ == '__main__':
     gen_html()
     gen_rss()
-
-    return 0
-
-
-if __name__ == '__main__':
-    sys.exit(main())
