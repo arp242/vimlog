@@ -72,8 +72,8 @@ def in_neovim(patch):
 
 
 def gen_html():
-    html = '<h2>2021</h2>\n'
-    last_year = '2021'
+    html = '<h2>2022</h2>\n'
+    last_year = '2022'
     for c in changes:
         if type(c[1]) == str:
             c[1] = [c[1]]

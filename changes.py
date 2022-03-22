@@ -5,6 +5,66 @@
 #     """ """],
 
 changes = [
+    ["Add \"fuzzy\" to 'wildoptions'", ['8.2.4463'],
+        """"Fuzzy" completion for commandline."""],
+
+    ["|DirChangedPre| event", ['8.2.4335'],
+        """Triggered before changing directory."""],
+
+    ["Add %e and %k in 'errorformat'", ['8.2.4329'],
+        """End line and column."""],
+
+    ["Add \"pum:\" to 'wildmenu'", ['8.2.4325'],
+        """Show popup menu for commandline completion."""],
+
+    ["Add \"timeout\" to 'spellsuggest'", ['8.2.4249'],
+        """Limit time searching for spell suggestions; previously always 5000ms."""],
+
+    ["P in visual mode", ['8.2.4242'],
+        """"Put" (paste) text in visual mode without yanking the deleted text to
+        the unnamed register."""],
+
+    ["win_move_separator(), win_move_statusline()", ['8.2.4052'],
+        """Move and resize windows."""],
+
+    ["builtin.txt", ['8.2.3917'],
+        """Split eval.txt in to builtin.txt"""],
+
+    ["Remove \"in development\" from Vim9", ['8.2.3906'],
+        """The "THIS IS STILL UNDER DEVELOPMENT - ANYTHING CAN BREAK - ANYTHING
+        CAN CHANGE" warning from Vim9 documentation is removed, marking it as
+        stable."""],
+
+    ["Allow script-local functions in *expr options", ['8.2.3900'],
+        """Can now use e.g. <code>set diffexpr=s:MyDiffExpr()</code>."""],
+
+    ["Add :argdedeupe", ['8.2.3888'],
+        """Remove duplicate entries from the argument list."""],
+
+    ["reduce(), filter(), and map() work on strings", ['8.2.3818', '8.2.3848'],
+        """"""],
+
+    ["Assign lambda to options that take a function", ["8.2.3619", "8.2.3665", "8.2.3712", "8.2.3725", "8.2.3735", "8.2.3751"],
+        """The 'operatorfunc', 'tagfunc', 'completefunc', 'omnifunc', and 'imactivatefunc' can now accept a lambda."""],
+
+    ["Add hl-CursorLineSign, hl-CursorLineFold", ['8.2.3664'],
+        """Adjust sign highlighting for 'cursorline'."""],
+
+    ["Add  hlget(), hlset()", ['8.2.3578', '8.2.3605'],
+        """Manipulate highlights programmatically."""],
+
+    ["Add |WinClosed| event", ['8.2.3591'],
+        """Triggered when closing a window."""],
+
+    ["Add |v:colornames|", ['8.2.3562'],
+        """Map colour names to hex codes."""],
+
+    ["Add 'guiligatures'", ["8.2.3524"],
+        """Support using ligatures in the GTK GUI."""],
+
+    ["Add 'thesaurusfunc'", ['8.2.3520'],
+        """Function to use for thesaurus completion."""],
+
     ["|ModeChanged| event", ["8.2.3430"],
         """Triggered when the mode changes."""],
 
