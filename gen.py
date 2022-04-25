@@ -9,7 +9,7 @@ import urllib.parse
 from changes import changes
 
 # Location of Vim source, git checkout
-vimsrc = '/data/src/vim'
+vimsrc = '/home/martin/src/vim'
 
 # Load helptags.
 tags = {}

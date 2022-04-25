@@ -5,7 +5,32 @@
 #     """ """],
 
 changes = [
-    ["Add \"fuzzy\" to 'wildoptions'", ['8.2.4463'],
+    ["Add maplist()", ['8.2.4820', '8.2.4825'],
+       """Get list of all mappings."""],
+
+    ["Add |hl-CurSearch|", ['8.2.4724', '8.2.4805'],
+        """Highlight the current search match."""],
+
+    ["Allow expressions in heredoc", ['8.2.4770', '8.2.4804'],
+        """Allow expressions in heredoc as <code>`=expr`</code> if <code>eval</code> is added:
+            <pre>let lines =<< trim eval END\n    See the file `=$HOME`/.vimrc\nEND</pre>"""],
+
+    ["Support LSP in channels", ['8.2.4648', '8.2.4758', '8.2.4761', '8.2.4780'],
+        """Support |language-server-protocol| (LSP) in channels."""],
+
+    ["Add |--log|", ['8.2.4742'],
+        """Start logging on startup."""],
+
+    ["|WinScrolled| event", ['8.2.4713'],
+        """Triggered after scrolling a window contents."""],
+
+    ["Add :profile <code>stop</code> and <code>dump</code>", ['8.2.4712'],
+        """Allow stopping profiling and dumping the profile to file (previously this was only on Vim exit)."""],
+
+    ["Open channel on Unix domain socket", ['8.2.4684'],
+        """<code>ch_open('unix:/tmp/socket')</code>"""],
+
+    ["Add \"fuzzy\" to 'wildoptions'", ['8.2.4463', '8.2.4608'],
         """"Fuzzy" completion for commandline."""],
 
     ["|DirChangedPre| event", ['8.2.4335'],
@@ -14,7 +39,7 @@ changes = [
     ["Add %e and %k in 'errorformat'", ['8.2.4329'],
         """End line and column."""],
 
-    ["Add \"pum:\" to 'wildmenu'", ['8.2.4325'],
+    ["Add \"pum:\" to 'wildoptions'", ['8.2.4325'],
         """Show popup menu for commandline completion."""],
 
     ["Add \"timeout\" to 'spellsuggest'", ['8.2.4249'],
@@ -26,6 +51,8 @@ changes = [
 
     ["win_move_separator(), win_move_statusline()", ['8.2.4052'],
         """Move and resize windows."""],
+
+    # 2021
 
     ["builtin.txt", ['8.2.3917'],
         """Split eval.txt in to builtin.txt"""],
