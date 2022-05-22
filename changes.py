@@ -1,11 +1,38 @@
 
 # [title, [vim version(s)], extended description]
 #
-# ["", '',
+# ["", [''],
 #     """ """],
 
 changes = [
-    ["Add maplist()", ['8.2.4820', '8.2.4825'],
+    ["Add << and >> operators", ['8.2.5003', '8.2.5004'],
+        """Bitwise shift operators."""],
+
+    ["Add autocmd_add(), autocmd_get(), autocmd_delete()", ['8.2.4981'],
+        """Functions to manipulate autocmds."""],
+
+    ["Add <code>/</code> in 'formatoptions'", ['8.2.4907'],
+        """Don't insert <code>//</code> when using |o| on a line with inline
+        comment ('cindent' only)."""],
+
+    ["Add getcmdcompltype(), getcmdscreenpos()", ['8.2.4903'],
+        """Get type and position of current command-line completion."""],
+
+    ["Add string interpolation", ['8.2.4883'],
+        """Allow expressions inside <code>{…}</code> when a string is prefixed with <code>$</code>;
+            e.g.<pre>$"Hello, {$USER} at {strftime('%c', localtime())}" </pre>"""],
+
+    ["Add column to 'breakindentopt", ['8.2.4882'],
+        """Indent soft-wrapped lines at specific column."""],
+
+    ["Restore mappings", ['8.2.4861'],
+        """mapset() accepts the dict returned from maparg() or maplist(),
+        making it easy to save and restore mappings."""],
+
+    ["Add isabsolutepath()", ['8.2.4838'],
+        """Check if a path is absolute."""],
+
+    ["Add maplist()", ['8.2.4820', '8.2.4825', '8.2.4932'],
        """Get list of all mappings."""],
 
     ["Add |hl-CurSearch|", ['8.2.4724', '8.2.4805'],
