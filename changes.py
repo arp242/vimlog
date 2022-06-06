@@ -5,13 +5,16 @@
 #     """ """],
 
 changes = [
+    ["Add virtcol2col()", ['8.2.5034'],
+        """Get byte index from virtual column."""],
+
     ["Add << and >> operators", ['8.2.5003', '8.2.5004'],
         """Bitwise shift operators."""],
 
-    ["Add autocmd_add(), autocmd_get(), autocmd_delete()", ['8.2.4981'],
+    ["Add autocmd_add(), autocmd_get(), autocmd_delete()", ['8.2.4981', '8.2.5011', '8.2.5030'],
         """Functions to manipulate autocmds."""],
 
-    ["Add <code>/</code> in 'formatoptions'", ['8.2.4907'],
+    ["Add <code>/</code> in 'formatoptions'", ['8.2.4907', '8.2.5008'],
         """Don't insert <code>//</code> when using |o| on a line with inline
         comment ('cindent' only)."""],
 
@@ -35,7 +38,7 @@ changes = [
     ["Add maplist()", ['8.2.4820', '8.2.4825', '8.2.4932'],
        """Get list of all mappings."""],
 
-    ["Add |hl-CurSearch|", ['8.2.4724', '8.2.4805'],
+    ["Add |hl-CurSearch|", ['8.2.4724', '8.2.4805', '8.2.5047'],
         """Highlight the current search match."""],
 
     ["Allow expressions in heredoc", ['8.2.4770', '8.2.4804'],
