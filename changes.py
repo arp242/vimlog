@@ -5,6 +5,19 @@
 #     """ """],
 
 changes = [
+    ["'cmdheight' can be set to 0", ['9.0.0114'],
+        """When set to 0 it will only show after pressing entering the
+        commandline."""],
+
+    # I can't get this to work well; probably conflicting with some setting.
+    # Seems it's still pretty experimental, so omit for now.
+    # ["Virtual text", ['9.0.0067', '9.0.0121', '9.0.0131', '... many ...', '9.0.0179'],
+    #     """|virtual-text| """],
+
+    ["Support double, dotted, and dashed underline", ['9.0.0007'],
+        """Can use |underdouble|, |underdotted|, and |underdashed| attributes in
+        :highlight."""],
+
     ["Add virtcol2col()", ['8.2.5034'],
         """Get byte index from virtual column."""],
 

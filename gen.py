@@ -40,9 +40,9 @@ def helptag(m):
 
 
 def helpify(text):
-    text = re.sub(r"('\w+')", opt('option'), text)              # 'option'
-    text = re.sub(r'\b(\w+)\(\)', opt('tag'), text)             # function()
-    text = re.sub(r':([\w]+)[^|]', opt('tag'), text)            # :ex
+    text = re.sub(r"('\w+')", opt('option'), text)               # 'option'
+    text = re.sub(r'\b(\w+)\(\)', opt('tag'), text)              # function()
+    text = re.sub(r':([\w]+)[^|.]', opt('tag'), text)            # :ex
     text = re.sub(r'\|([-\w/?:\\<>%=\[\].]+)\|', helptag, text)  # |tag|
     return text
 
