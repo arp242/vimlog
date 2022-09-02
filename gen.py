@@ -1,22 +1,24 @@
 #!/usr/bin/env python3
 
-import html
-import re
-import subprocess
-import sys
-import urllib.parse
-
+import copy, html, re, subprocess, sys, urllib.parse
 from changes import changes
 
 # Location of Vim source, git checkout
 vimsrc = '/home/martin/src/vim'
+if len(sys.argv) > 1:
+    vimsrc = sys.argv[1]
 
 # Load helptags.
 tags = {}
-for line in open(vimsrc + '/runtime/doc/tags').readlines():
-    tag, file, _ = line.split('\t')
-    tag = tag.replace('&lt;', '<').replace('&gt;', '>')
-    tags[tag] = file
+try:
+    for line in open(vimsrc + '/runtime/doc/tags').readlines():
+        tag, file, _ = line.split('\t')
+        tag = tag.replace('&lt;', '<').replace('&gt;', '>')
+        tags[tag] = file
+except FileNotFoundError as e:
+    print(e, file=sys.stderr)
+    print('set the first argument to a git checkout of the Vim source directory', file=sys.stderr)
+    sys.exit(1)
 
 help_url = '<a target="_blank" class="help-{}" href="https://vimhelp.org/{}.html#{}">{}</a>'
 
@@ -42,7 +44,7 @@ def helptag(m):
 def helpify(text):
     text = re.sub(r"('\w+')", opt('option'), text)               # 'option'
     text = re.sub(r'\b(\w+)\(\)', opt('tag'), text)              # function()
-    text = re.sub(r':([\w]+)[^|.]', opt('tag'), text)            # :ex
+    text = re.sub(r':([\w]+)[^|.,]', opt('tag'), text)           # :ex
     text = re.sub(r'\|([-\w/?:\\<>%=\[\].]+)\|', helptag, text)  # |tag|
     return text
 
@@ -60,6 +62,9 @@ commits.reverse()
 
 
 def find_commit(version):
+    if version == '…many…':
+        return version
+
     for c in commits:
         if c[0] == 'v' + version:
             return c
@@ -67,22 +72,77 @@ def find_commit(version):
     sys.exit(1)
 
 
+# neosrc = '/home/martin/src/neovim'
+# neo_commits = subprocess.run(['git', '-C', neosrc, 'log', '--format=%H|%s'],
+#                              capture_output=True)
+# if neo_commits.returncode > 0:
+#     print(neo_commits.stderr.decode())
+#     sys.exit(neo_commits.returncode)
+# 
+# neo_commits = [l.split('|') for l in neo_commits.stdout.decode().split('\n')[:-1] if l.find('vim-patch') > -1]
+# neo_map = {}
+# for c in neo_commits:
+#     h = c[0]
+#     sub = c[1]
+#     
+#     text = re.find(r'vim-patch:[0-9a-f.{}]+', sub)
+
+
 def in_neovim(patch):
+    # We can get this from the Neovim commit log, but the format isn't 100%
+    # consistent:
+    #
+    # c65b1f3e1 vim-patch:9.0.0342: ":wincmd =" equalizes in two directions
+    # 95b8e2c55 vim-patch:partial:8.1.0822: peeking and flushing output slows down execution
+    # 6a13b8fa5 vim-patch:7dd543246a4c (#19960)
+    # f3c8f3e5d vim-patch:partial:8a3b805c6c9c (#19104)
+    # eea6a4f2a vim-patch:8.2.{0212,0250}
+    # 1b5f53ca9 vim-patch:7.4.212
+    # e9e16655a [RFC] vim-patch:8.1.1378: delete() can not handle a file name that looks li… (#16268)
+    # 65b823226 vim-patch:8.2.{210,424,436,...} #15976
+    # 55d1e630b Merge #15731 vim-patch:7.4.725,8.2.{0597,0598,0924,1035}
+    #
+    # Check which tags apply for a commit:
+    #
+    #   git tag --contains 65b823226
+    #
+    #   nightly
+    #   stable
+    #   v0.6.0
+    #   v0.6.1
+    #   v0.7.0
+    #   v0.7.1
+    #   v0.7.2
+    #
+    # Or list all commits for a tag:
+    #
+    #   git rev-list v0.7.2
     return True
+
+
+def has_elip(version_list):
+    try:
+        version_list.remove('…')
+        return True
+    except ValueError:
+        return False
 
 
 def gen_html():
     html = '<h2>2022</h2>\n'
     last_year = '2022'
+
     for c in changes:
+        c = copy.deepcopy(c)
         if type(c[1]) == str:
             c[1] = [c[1]]
-        version = []
+
+        elip = has_elip(c[1])
         c[1] = sorted(c[1])
+        version = []
         for i, p in enumerate(c[1]):
             commit = find_commit(p)
 
-            # ['v8.1.1833', '0c779e8e4831c538918ae835ce3365af028e36ea', 'Fri Aug 9 17:01:02 2019 +0200']
             if i == len(c[1]) - 1:
                 year = commit[2][-10:-6]
                 if year != last_year:
@@ -96,6 +156,10 @@ def gen_html():
                 version.append(f'<a target="_blank" href="{l}">{p}</a> <sup>({d})</sup>')
             else:
                 version.append(f'<a target="_blank" href="{l}">{p}</a>')
+
+        if elip:
+            version.insert(len(version) - 1, '…many…')
+
         #last_version = version.pop()
         html += f'''<section><div><h3>{helpify(c[0])}</h3><p>{', '.join(version)}</p></div><p>{helpify(c[2])}</p></section>\n'''
 
@@ -119,7 +183,12 @@ def gen_rss():
     for c in changes:
         if type(c[1]) == str:
             c[1] = [c[1]]
+
+        elip = has_elip(c[1])
         c[1] = sorted(c[1])
+
+        if elip:
+            c[1].insert(len(c[1]) - 1, '…many…')
 
         title = '{} [{}]'.format(escape(c[0]), ', '.join(c[1]))
         link = "https://www.arp242.net/vimlog"

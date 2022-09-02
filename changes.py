@@ -5,14 +5,20 @@
 #     """ """],
 
 changes = [
-    ["'cmdheight' can be set to 0", ['9.0.0114'],
-        """When set to 0 it will only show after pressing entering the
-        commandline."""],
+    ["Set cursor shape in Windows terminal", ['9.0.0347'],
+        """|termcap-cursor-shape| works on Windows."""],
 
-    # I can't get this to work well; probably conflicting with some setting.
-    # Seems it's still pretty experimental, so omit for now.
-    # ["Virtual text", ['9.0.0067', '9.0.0121', '9.0.0131', '... many ...', '9.0.0179'],
-    #     """|virtual-text| """],
+    ["Add getscriptinfo()", ['9.0.0244', '9.0.0253', '9.0.0269', '9.0.0303'],
+        """:scriptnames, but more convenient for scripts."""],
+
+    ["Virtual text", ['9.0.0067', '…', '9.0.0297'],
+        """Allow adding |virtual-text| to buffers."""],
+
+    ["Add setcmdline()", ['9.0.0285'],
+     """Set the commandline content and cursor position from a script."""],
+
+    ["Add indexof()", ['9.0.0196', '9.0.0202', '9.0.0204'],
+        """Find value in list with a callback function."""],
 
     ["Support double, dotted, and dashed underline", ['9.0.0007'],
         """Can use |underdouble|, |underdotted|, and |underdashed| attributes in
