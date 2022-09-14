@@ -5,14 +5,26 @@
 #     """ """],
 
 changes = [
+    ["Add keytrans()", ['9.0.0449'],
+        """Convert escape sequences to strings."""],
+
+    ["Add 'splitscroll'", ['9.0.0445'],
+        """When off text will keep its position as much as possible with horizontal splits."""],
+
+    ["Add :defer", ['9.0.0370', '9.0.0419', '9.0.0440'],
+        """Run code when a function exits."""],
+
+    ["Virtual text", ['9.0.0067', '…', '9.0.0438'],
+        """Allow adding |virtual-text| to buffers."""],
+
+    ["Add 'D' flag in writefile() and mkdir()", ['9.0.0379', '9.0.0411'],
+        """Delete the file or directory when a function exits."""],
+
     ["Set cursor shape in Windows terminal", ['9.0.0347'],
         """|termcap-cursor-shape| works on Windows."""],
 
     ["Add getscriptinfo()", ['9.0.0244', '9.0.0253', '9.0.0269', '9.0.0303'],
         """:scriptnames, but more convenient for scripts."""],
-
-    ["Virtual text", ['9.0.0067', '…', '9.0.0297'],
-        """Allow adding |virtual-text| to buffers."""],
 
     ["Add setcmdline()", ['9.0.0285'],
      """Set the commandline content and cursor position from a script."""],
