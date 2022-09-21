@@ -176,8 +176,8 @@ changes = [
         """|zp| pastes in block mode without adding trailing whitespace, |zy| yanks
             without trailing whitespace."""],
 
-    ["Add %{ to 'statusline'", "8.2.2854",
-        """%{expr} reëvaluates the expression as a 'statusline' formatting string."""],
+    ["Add {% to 'statusline'", "8.2.2854",
+        """{%expr%} re-evaluates the expression as a 'statusline' formatting string."""],
 
     ["Add f flag in :vimgrep", "8.2.2813",
         """"Fuzzy" match :vimgrep results."""],
