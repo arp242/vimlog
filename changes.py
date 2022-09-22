@@ -5,17 +5,20 @@
 #     """ """],
 
 changes = [
+    ["Virtual text", ['9.0.0067', '…', '9.0.0534'],
+        """Allow adding |virtual-text| to buffers."""],
+
+    ["Add 'splitscroll'", ['9.0.0445', '9.0.0455', '9.0.0469', '9.0.0486', '9.0.0505'],
+        """When off text will keep its position as much as possible with horizontal splits."""],
+
+    ["Drop Windows XP and Vista support", ['9.0.0496'],
+        """"""],
+
     ["Add keytrans()", ['9.0.0449'],
         """Convert escape sequences to strings."""],
 
-    ["Add 'splitscroll'", ['9.0.0445'],
-        """When off text will keep its position as much as possible with horizontal splits."""],
-
     ["Add :defer", ['9.0.0370', '9.0.0419', '9.0.0440'],
         """Run code when a function exits."""],
-
-    ["Virtual text", ['9.0.0067', '…', '9.0.0438'],
-        """Allow adding |virtual-text| to buffers."""],
 
     ["Add 'D' flag in writefile() and mkdir()", ['9.0.0379', '9.0.0411'],
         """Delete the file or directory when a function exits."""],
