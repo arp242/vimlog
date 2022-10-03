@@ -5,8 +5,9 @@
   <title>VimLog</title>
   <link>https://www.arp242.net/vimlog</link>
   <description> A ChangeLog for Vim </description>
-  <item><title>Virtual text [9.0.0067, …many…, 9.0.0534]</title><link>https://www.arp242.net/vimlog</link><description>Allow adding |virtual-text| to buffers.</description></item>
-<item><title>Add &#x27;splitscroll&#x27; [9.0.0445, 9.0.0455, 9.0.0469, 9.0.0486, 9.0.0505]</title><link>https://www.arp242.net/vimlog</link><description>When off text will keep its position as much as possible with horizontal splits.</description></item>
+  <item><title>Add &#x27;splitkeep&#x27; [9.0.0445, 9.0.0455, 9.0.0469, 9.0.0486, 9.0.0505, 9.0.0647]</title><link>https://www.arp242.net/vimlog</link><description>Control scrolling behaviour when opening, closing or resizing horizontal splits.</description></item>
+<item><title>matchaddpos() can add many matches [9.0.0620, 9.0.0622]</title><link>https://www.arp242.net/vimlog</link><description>Previously limited to 8.</description></item>
+<item><title>Virtual text [9.0.0067, …many…, 9.0.0534]</title><link>https://www.arp242.net/vimlog</link><description>Allow adding |virtual-text| to buffers.</description></item>
 <item><title>Drop Windows XP and Vista support [9.0.0496]</title><link>https://www.arp242.net/vimlog</link><description></description></item>
 <item><title>Add keytrans() [9.0.0449]</title><link>https://www.arp242.net/vimlog</link><description>Convert escape sequences to strings.</description></item>
 <item><title>Add :defer [9.0.0370, 9.0.0419, 9.0.0440]</title><link>https://www.arp242.net/vimlog</link><description>Run code when a function exits.</description></item>

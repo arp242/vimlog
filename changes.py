@@ -5,11 +5,18 @@
 #     """ """],
 
 changes = [
+    # Not yet finished; only ^E and ^Y
+    # ["Add 'smoothscroll'", ['9.0.0640', '…', '9.0646'],
+    #     """Scroll (wrapped) screen lines."""],
+
+    ["Add 'splitkeep'", ['9.0.0445', '9.0.0455', '9.0.0469', '9.0.0486', '9.0.0505', '9.0.0647'],
+        """Control scrolling behaviour when opening, closing or resizing horizontal splits."""],
+
+    ["matchaddpos() can add many matches", ['9.0.0620', '9.0.0622'],
+        """Previously limited to 8."""],
+
     ["Virtual text", ['9.0.0067', '…', '9.0.0534'],
         """Allow adding |virtual-text| to buffers."""],
-
-    ["Add 'splitscroll'", ['9.0.0445', '9.0.0455', '9.0.0469', '9.0.0486', '9.0.0505'],
-        """When off text will keep its position as much as possible with horizontal splits."""],
 
     ["Drop Windows XP and Vista support", ['9.0.0496'],
         """"""],
