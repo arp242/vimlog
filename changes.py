@@ -5,9 +5,21 @@
 #     """ """],
 
 changes = [
-    # Not yet finished; only ^E and ^Y
-    # ["Add 'smoothscroll'", ['9.0.0640', '…', '9.0646'],
+    # Not yet finished; only ^E and ^Y, mouse
+    # ["Add 'smoothscroll'", ['9.0.0640', '…', '9.0734'],
     #     """Scroll (wrapped) screen lines."""],
+
+    ["""Add "C" in 'shortmess'""", ['9.0.0738'],
+        """Supress messages during |ins-completion|"""],
+
+    ["Sound functions work on macOS", ['9.0.0694'],
+        """sound_playevent() now works on macOS"""],
+
+    ["Add :echowindow", ['9.0.0683', '9.0.0551', '9.0.0447', '9.0.0431', '9.0.0356', '9.0.0352', '9.0.0350', '9.0.0321'],
+        """Display message in popup window; also add popup_findecho()."""],
+
+    ["Add lastline in 'fillchars'", ['9.0.0656', '9.0.0661'],
+        """Set character to use for when 'display' contains fillchars or truncate."""],
 
     ["Add 'splitkeep'", ['9.0.0445', '9.0.0455', '9.0.0469', '9.0.0486', '9.0.0505', '9.0.0647'],
         """Control scrolling behaviour when opening, closing or resizing horizontal splits."""],
