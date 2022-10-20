@@ -6,8 +6,17 @@
 
 changes = [
     # Not yet finished; only ^E and ^Y, mouse
-    # ["Add 'smoothscroll'", ['9.0.0640', '…', '9.0734'],
+    # ["Add 'smoothscroll'", ['9.0.0640', '…', '9.0.0758'],
     #     """Scroll (wrapped) screen lines."""],
+
+    ["Add offset and size parameters to readblob()", ['9.0.0795'],
+        """Before it always read the entire file."""],
+
+    ["Add 'lispoptions'", ['9.0.0761'],
+        """Setting lispoptions=indentexpr:1 allows using 'indentexpr' when 'lisp' is enabled."""],
+
+    ["Add TextChangedT", ['9.0.0756'],
+        """Triggered afted text changed in the |terminal-window|."""],
 
     ["""Add "C" in 'shortmess'""", ['9.0.0738'],
         """Supress messages during |ins-completion|"""],
