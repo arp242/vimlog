@@ -5,11 +5,27 @@
 #     """ """],
 
 changes = [
-    # Not yet finished; only ^E and ^Y, mouse
-    # ["Add 'smoothscroll'", ['9.0.0640', '…', '9.0.0758'],
-    #     """Scroll (wrapped) screen lines."""],
+    # 2022
 
-    ["Add offset and size parameters to readblob()", ['9.0.0795'],
+    ["Add 'smoothscroll'", ['9.0.0640', '…', '9.0.1121'],
+        """Scroll wrapped screen lines rather than text lines with <C-e>, <C-y>, and mouse."""],
+
+    ["Add 'showcmdloc', %S in 'statusline' and 'tabline'", ['9.0.1061'],
+        """Control where 'showcmd' is displayed, or add it to the statusline or tabline."""],
+
+    ["Support |kitty-keyboard-protocol| keyboard protocol, add 'keyprotocol'", ['9.0.0930', '9.0.0939', '9.0.0976'],
+        """For the KiTTY terminal; has better handling for modifier keys."""],
+
+    ["Add |WinResized| event", ['9.0.0913', '9.0.0917', '9.0.1025'],
+        """Triggered when a window changes size."""],
+
+    ["|WinScrolled| works on inactive windows, has more information", ['9.0.0913', '9.0.0917', '9.0.1025'],
+        """Previously this only worked for the current window and didn't provide any information about what changed. """],
+
+    ["Add winid option to col() and charcol()", ['9.0.0863'],
+        """Get cursor column from another window."""],
+
+    ["Add offset and size parameters to readblob(), allow reading character devices", ['9.0.0795', '9.0.0803', '9.0.0810'],
         """Before it always read the entire file."""],
 
     ["Add 'lispoptions'", ['9.0.0761'],
