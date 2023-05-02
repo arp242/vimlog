@@ -5,6 +5,14 @@
 #     """ """],
 
 changes = [
+    # 2023
+
+    ["Better UTF-16 support", ['9.0.1485'],
+        """Add strutf16len() and utf16idx(), and add utf16 flag to byteidx(), byteidxcomp(), and charidx()"""],
+
+    ["Add 'crypymethod' xchacha20v2", ['9.0.1481'],
+        """Mostly the same as xchacha20, but more future-proof against changes in libsodium."""],
+
     # 2022
 
     ["Add 'smoothscroll'", ['9.0.0640', '…', '9.0.1121'],

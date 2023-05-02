@@ -129,8 +129,8 @@ def has_elip(version_list):
 
 
 def gen_html():
-    html = '<h2>2022</h2>\n'
-    last_year = '2022'
+    html = '<h2>2023</h2>\n'
+    last_year = '2023'
 
     for c in changes:
         c = copy.deepcopy(c)
