@@ -170,10 +170,12 @@ def gen_html():
     with open('last_update', 'w') as fp:
         fp.write(f'v{last_update.split(" ")[0]}\n')
 
+    css = open('all.css', 'r').read()
     with open('index.html', 'w') as fp:
         fp.write(open('tpl.html').read().
                  replace('%%CONTENT%%', html).
-                 replace('%%LAST_UPDATE%%', last_update))
+                 replace('%%LAST_UPDATE%%', last_update).
+                 replace('%%CSS%%', css))
 
 
 def gen_rss():
