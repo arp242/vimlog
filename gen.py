@@ -51,7 +51,7 @@ def helpify(text):
 
 # Load all commits.
 commits = subprocess.run(['git', '-C', vimsrc, 'tag', '--list',
-                         '--format', '%(refname:strip=2)|%(objectname)|%(authordate)'],
+                         '--format', '%(refname:strip=2)|%(objectname)|%(creatordate)'],
                          capture_output=True)
 if commits.returncode > 0:
     print(commits.stderr.decode())
